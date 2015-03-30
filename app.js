@@ -25,7 +25,7 @@ mongoose.connect('mongodb://user_db:pass_db@ds029051.mongolab.com:29051/mongotes
   if(err) {
     console.log('ERROR: connecting to Database. ' + err);
   } else {
-    console.log('Connected to Database'.red);
+    console.log('Connected to Database'.green);
   }
 });
 
@@ -66,7 +66,8 @@ controllers.set(app);
 /**
  * Start listening
  */
-var port = process.env.port;// || 3001;
+var port = process.env.PORT || 5000;
+
 var server = app.listen(port, function() {
 	console.log('Listening on port %d'.green, server.address().port);
 });
