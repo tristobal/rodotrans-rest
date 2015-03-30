@@ -20,7 +20,14 @@ var jwtauth = require('./lib/jwtauth');
 /**
  * Connect to the database
  */
-mongoose.connect('mongodb://localhost/jwttest');
+//mongoose.connect('mongodb://localhost/jwttest');
+mongoose.connect('mongodb://user_db:pass_db@ds029051.mongolab.com:29051/mongotest', function(err, res) {
+  if(err) {
+    console.log('ERROR: connecting to Database. ' + err);
+  } else {
+    console.log('Connected to Database'.red);
+  }
+});
 
 /**
  * Create the express app
@@ -59,7 +66,8 @@ controllers.set(app);
 /**
  * Start listening
  */
-var server = app.listen(3001, function() {
+var port = process.env.port || 3001;
+var server = app.listen(port, function() {
 	console.log('Listening on port %d'.green, server.address().port);
 });
 
