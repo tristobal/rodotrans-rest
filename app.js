@@ -3,6 +3,7 @@
  */
 var express = require('express');
 var colors = require('colors');
+var cors = require('cors');
 var mongoose = require('mongoose');
 var url = require('url');
 var jwt = require('jwt-simple');
@@ -20,7 +21,7 @@ var jwtauth = require('./lib/jwtauth');
 /**
  * Connect to the database
  */
-//mongoose.connect('mongodb://localhost/jwttest');
+//mongoose.connect('mongodb://localhost/jwttest', function(err, res) {
 mongoose.connect('mongodb://user_db:pass_db@ds029051.mongolab.com:29051/mongotest', function(err, res) {
   if(err) {
     console.log('ERROR: connecting to Database. ' + err);
@@ -34,6 +35,7 @@ mongoose.connect('mongodb://user_db:pass_db@ds029051.mongolab.com:29051/mongotes
  * NOTE: purposely not using var so that app is accesible in modules.
  */
 app = express();
+app.use(cors());
 app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");

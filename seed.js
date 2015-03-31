@@ -14,6 +14,7 @@ var UserModel = require('./models/user');
  * Connect to the database
  */
 mongoose.connect('mongodb://user_db:pass_db@ds029051.mongolab.com:29051/mongotest', function(err, res) {
+//mongoose.connect('mongodb://localhost/jwttest', function(err, res) {
   if(err) {
     console.log('ERROR: connecting to Database. ' + err);
   } else {
